@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="media/pro.png" type="image/x-icon">
+    <title>Music Player</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <audio id="audio-player">
+        <source id="audio-source" src="media/MANIAC.mp3" type="audio/mpeg">
+    </audio>
+
+    <header>
+        <img src="media/icon-192x192.png">
+        <h1>Music Player</h1>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#library">Library</a>
+            <a href="#playlists">Playlists</a>
+            <a href="#settings-popup" id="settings-button">Settings</a>
+            <!-- Settings Popup -->
+            <div id="settings-popup" class="popup">
+                <h2>Settings</h2>
+                <button href="#" id="toggle-theme">Dark Mode</button>
+                <button href="#" id="close-popup">Close</button>
+            </div>
+        </nav>
+    </header>
+    <main>
+
+        <div class="search">
+            <input type="text" id="search-input" placeholder="Search for songs...">
+            <button id="search-btn">Search</button>
+            <div id="results"></div>
+        </div>
+
+        <section class="now-playing" id="home">
+            <div class="volume-control">
+                <h2>Now Playing</h2>
+                <img src="media/sound.png"><input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1">
+            </div>
+            <div class="player">
+                <div class="song-info">
+                    <img src="media/profile.jpeg" alt="Album Art">
+                </div>
+                    <canvas id="visualizer"></canvas>
+                <div class="song-info">
+                    <h3>Music Player</h3>
+                    <p>Anil Kumar</p>
+                    <div class="controls">
+                        <button>&#9664;&#9664;</button>
+                        <button>&#9654;</button>
+                        <button>&#9654;&#9654;</button>
+                    </div>
+                </div>
+            </div>
+            <div class="seek-bar-container">
+                <span id="current-time">0:00</span>
+                <input type="range" id="seek-bar" value="0" min="0" step="1">
+                <span id="total-duration">0:00</span>
+            </div>
+        </section>
+        <!--Footer icons Home, library, playlist, settins -->
+        <div class="mobile-footer">
+            <div class="footer-item">
+                <a href="#home" class="fas fa-home"></a>
+                <p>Home</p>
+            </div>
+            <div class="footer-item">
+                <a href="#library" class="fas fa-music"></a>
+                <p>Library</p>
+            </div>
+            <div class="footer-item">
+                <a href="#playlists" class="fas fa-list"></a>
+                <p>Playlist</p>
+            </div>
+            <div class="footer-item">
+                <a href="#settings-popup" id="settings-button" class="fas fa-cog"></a>
+                <p>Settings</p>
+            </div>
+        </div>
+
+        <section class="stats-dashboard" id="stats">
+            <div class="stats-container">
+                <div class="stat-card">
+                    <h3>Most Played Song</h3>
+                    <p id="most-played-song">No data yet</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Listening Time</h3>
+                    <p id="total-time">0 min</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Favorite Artists</h3>
+                    <p id="fav-artists">No data yet</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Recently Played</h3>
+                    <ul id="recently-played"></ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="library-section" id="library">
+            <h2>Library</h2>
+            <div class="library">
+                <div class="song-card" onclick="playSong('MANIAC')">
+                    <img src="media/library.jpg" alt="Album Art">
+                    <div class="card-content">
+                        <h3>MANIAC</h3>
+                        <p>｜YO YO HONEY SINGH ｜ ESHA GUPTA ｜ GLORY ｜ BHUSHAN KUMAR｜</p>
+                    </div>
+                </div>
+                <div class="song-card" onclick="playSong('Nazra_Ke_Teer')">
+                    <img src="media/library.jpg" alt="Album Art">
+                    <div class="card-content">
+                        <h3>Nazra_Ke_Teer</h3>
+                        <p>Vikram Sarkar</p>
+                    </div>
+                </div>
+                <div class="song-card" onclick="playSong('Ek-Pardesi-Mera-Dil-2.0')">
+                    <img src="media/library.jpg" alt="Album Art">
+                    <div class="card-content">
+                        <h3>Ek-Pardesi-Mera-Dil-2.0</h3>
+                        <p>｜ Emiway Bantai ｜ Yo Yo Honey Singh ｜</p>
+                    </div>
+                </div>
+                <div class="song-card" onclick="playSong('She Move It Like')">
+                    <img src="media/library.jpg" alt="Album Art">
+                    <div class="card-content">
+                        <h3>She Move It Like</h3>
+                        <p>｜ Badshah ｜ Warina Hussain ｜</p>
+                    </div>
+                </div>
+                <div class="song-card" onclick="playSong('Koka')">
+                    <img src="media/library.jpg" alt="Album Art">
+                    <div class="card-content">
+                        <h3>Koka</h3>
+                        <p>｜ Khandaani Shafakhana ｜</p>
+                    </div>
+                </div>
+                <div class="song-card">
+                    <img src="media/library.jpg" alt="Album Art">
+                    <div class="card-content">
+                        <h3>Song Title 6</h3>
+                        <p>Artist Name 6</p>
+                    </div>
+                </div>
+                <div class="song-card" onclick="playSong('Song Title 1')">
+                    <img src="media/library.jpg" alt="Album Art">
+                    <div class="card-content">
+                        <h3>Song Title 7</h3>
+                        <p>Artist Name 7</p>
+                    </div>
+                </div>
+                <div class="song-card">
+                    <img src="media/library.jpg" alt="Album Art">
+                    <div class="card-content">
+                        <h3>Song Title 8</h3>
+                        <p>Artist Name 8</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- More song cards -->
+        <section class="playlists-section" id="playlists">
+            <h2>Playlists</h2>
+            <div class="playlist-grid">
+                <div class="playlist-card">
+                    <img src="media/playlist.jpg" alt="Playlist Cover">
+                    <div class="playlist-card-content">
+                        <h3>Playlist 1</h3>
+                        <p>Description of Playlist 1</p>
+                    </div>
+                </div>
+                <div class="playlist-card">
+                    <img src="media/playlist.jpg" alt="Playlist Cover">
+                    <div class="playlist-card-content">
+                        <h3>Playlist 1</h3>
+                        <p>Description of Playlist 1</p>
+                    </div>
+                </div>
+                <div class="playlist-card">
+                    <img src="media/playlist.jpg" alt="Playlist Cover">
+                    <div class="playlist-card-content">
+                        <h3>Playlist 1</h3>
+                        <p>Description of Playlist 1</p>
+                    </div>
+                </div>
+                <div class="playlist-card">
+                    <img src="media/playlist.jpg" alt="Playlist Cover">
+                    <div class="playlist-card-content">
+                        <h3>Playlist 1</h3>
+                        <p>Description of Playlist 1</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer-container" id="contact">
+        <div class="footer-bottom">
+            <div class="social-icons" role="navigation" aria-label="Social media links">
+                <a href="#" target="_blank" class="social-icon" aria-label="Facebook"><i
+                        class="fab fa-facebook-f"></i></a>
+                <a href="#" target="_blank" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank" class="social-icon" aria-label="Instagram"><i
+                        class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank" class="social-icon" aria-label="LinkedIn"><i
+                        class="fab fa-linkedin-in"></i></a>
+                <a href="#" target="_blank" class="social-icon" aria-label="Pinterest"><i
+                        class="fab fa-pinterest"></i></a>
+                <a href="#" target="_blank" class="social-icon" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+            <button onclick="topFunction()" class="back-to-top" aria-label="Back to top">↑</button>
+            <div class="copyright">
+                <p>&copy; 2025 Music Player. All rights reserved.</p>
+            </div>
+        </div>
+
+    </footer>
+    <script>
+        // js for got to top button ------------------------------
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            let button = document.querySelector(".back-to-top");
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                button.style.display = "block";
+            } else {
+                button.style.display = "none";
+            }
+        }
+
+        function topFunction() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+    <!--Progressive Web App-->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js');
+        }
+    </script>
+
+    <script>
+        // Register Service Worker
+        document.addEventListener('DOMContentLoaded', () => {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(reg => console.log('Service Worker Registered!', reg))
+                    .catch(err => console.log('Service Worker Failed:', err));
+            }
+        });
+    </script>
+
+    <script src="js/script.js"></script>
+    <script src="js/popup.js"></script>
+    <script src="js/service-worker.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/music_bar_visualizer.js"></script>
+    
+    <script>
+        if (window.jQuery) {
+            delete window.jQuery;
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+</body>
+
+</html>

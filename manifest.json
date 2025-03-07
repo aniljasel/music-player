@@ -1,0 +1,36 @@
+{
+  "id": "/index.html",
+  "name": "Music Player",
+  "short_name": "MP",
+  "description": "A PWA music player with offline support.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "theme_color": "#ff4500",
+  "background_color": "#000000",
+  "icons": [
+      {
+          "src": "media/icon-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+      },
+      {
+          "src": "media/icon-512x512.png",
+          "sizes": "512x512",
+          "type": "image/png"
+      }
+  ],
+  "screenshots": [
+      {
+          "src": "media/screenshot-mobile.png",
+          "sizes": "1080x1920",
+          "type": "image/png",
+          "form_factor": "narrow"
+      },
+      {
+          "src": "media/screenshot-desktop.png",
+          "sizes": "1920x1080",
+          "type": "image/png",
+          "form_factor": "wide"
+      }
+  ]
+}
