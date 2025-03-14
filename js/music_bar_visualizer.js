@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const audio = document.getElementById("audio-player");
     const canvas = document.getElementById("visualizer");
     const ctx = canvas.getContext("2d");
-
     canvas.width = window.innerWidth * 0.8;
     canvas.height = 150;
 
@@ -49,13 +48,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function updateSoundEffects() {
-        gainNode.gain.value = maxxbassControl.value / 50; // Increase gain value for MaxxBass
-        biquadFilter.frequency.value = detailsControl.value * 20; // Increase frequency for Details
+        gainNode.gain.value = Math.min(maxxbassControl.value / 100, 2); // Increase gain value for MaxxBass
+        biquadFilter.frequency.value = Math.min(detailsControl.value * 20, 8000); // Increase frequency for Details
         biquadFilter.gain.value = midnightControl.value * 4; // Increase gain for Midnight
-        biquadFilter.Q.value = widthControl.value / 25; // Increase Q factor for Width
+        biquadFilter.Q.value = Math.min(widthControl.value / 25, 5); // Increase Q factor for Width
 
         equalizerBands.forEach((band, index) => {
-            band.gain.value = (equalizerControls[index].value - 50) / 5; // Increase gain for each equalizer band
+            band.gain.value = Math.min(Math.max((equalizerControls[index].value - 50) / 10, -6), 6);
         });
     }
 
