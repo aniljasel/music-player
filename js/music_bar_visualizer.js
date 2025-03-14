@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const audio = document.getElementById("audio-player");
     const canvas = document.getElementById("visualizer");
     const ctx = canvas.getContext("2d");
+
     canvas.width = window.innerWidth * 0.8;
     canvas.height = 150;
 
@@ -48,53 +49,61 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function updateSoundEffects() {
-        gainNode.gain.value = Math.min(maxxbassControl.value / 100, 2);
-        biquadFilter.frequency.value = Math.min(detailsControl.value * 20, 8000);
-        biquadFilter.gain.value = midnightControl.value * 4;
-        biquadFilter.Q.value = Math.min(widthControl.value / 25, 5);
+        gainNode.gain.value = maxxbassControl.value / 50; // Increase gain value for MaxxBass
+        biquadFilter.frequency.value = detailsControl.value * 20; // Increase frequency for Details
+        biquadFilter.gain.value = midnightControl.value * 4; // Increase gain for Midnight
+        biquadFilter.Q.value = widthControl.value / 25; // Increase Q factor for Width
 
         equalizerBands.forEach((band, index) => {
-            band.gain.value = Math.min(Math.max((equalizerControls[index].value - 50) / 10, -6), 6);
+            band.gain.value = (equalizerControls[index].value - 50) / 5; // Increase gain for each equalizer band
         });
     }
 
     function toggleSoundEffects(enable) {
         if (enable) {
-            source.disconnect();
+            source.disconnect(audioContext.destination);
             source.connect(gainNode);
             gainNode.connect(biquadFilter);
-            equalizerBands[0].connect(biquadFilter);
-
-            for (let i = 0; i < equalizerBands.length - 1; i++) {
-                equalizerBands[i].connect(equalizerBands[i + 1]);
-            }
+            equalizerBands.forEach((band, index) => {
+                if (index === 0) {
+                    biquadFilter.connect(band);
+                } else {
+                    equalizerBands[index - 1].connect(band);
+                }
+            });
             equalizerBands[equalizerBands.length - 1].connect(audioContext.destination);
+            updateSoundEffects();
+            analyser.connect(audioContext.destination); // Connect analyser to destination
         } else {
-            source.disconnect();
+            gainNode.disconnect();
+            biquadFilter.disconnect();
+            equalizerBands.forEach(band => band.disconnect());
             source.connect(audioContext.destination);
+            analyser.connect(audioContext.destination); // Connect analyser to destination
         }
     }
 
-    let animationFrameId;
     function drawVisualizer() {
-        animationFrameId = requestAnimationFrame(drawVisualizer);
+        requestAnimationFrame(drawVisualizer);
         const dataArray = new Uint8Array(analyser.frequencyBinCount);
         analyser.getByteFrequencyData(dataArray);
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        const barWidth = (canvas.width / dataArray.length) * 10;
+
+        const barWidth = (canvas.width / dataArray.length) * 10; // Increase bar width
         let x = 0;
 
         for (let i = 0; i < dataArray.length; i++) {
             const barHeight = dataArray[i];
-            ctx.fillStyle = `rgb(${barHeight + 25}, ${10 * (i / dataArray.length)}, 150)`;
+            const r = barHeight + (25 * (i / dataArray.length));
+            const g = 10 * (i / dataArray.length);
+            const b = 150;
+
+            ctx.fillStyle = `rgb(${r},${g},${b})`;
             ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+
             x += barWidth + 1;
         }
-    }
-
-    function stopVisualizer() {
-        cancelAnimationFrame(animationFrameId);
     }
 
     function startAudio() {
@@ -108,14 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     window.addEventListener("click", startAudio, { once: true });
-    window.addEventListener("touchstart", startAudio, { passive: true, once: true });
-
-    // ✅ Fix: Browser tab switch ke baad audio suspend na ho
-    document.addEventListener("visibilitychange", () => {
-        if (document.visibilityState === "visible" && audioContext.state === "suspended") {
-            audioContext.resume();
-        }
-    });
+    window.addEventListener("touchstart", startAudio, { once: true });
 
     audio.addEventListener("canplay", startAudio);
 
