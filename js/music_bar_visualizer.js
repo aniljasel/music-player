@@ -113,7 +113,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (audio.paused) {
             audio.play();
         }
-        drawVisualizer();
     }
 
     window.addEventListener("click", startAudio, { once: true });
