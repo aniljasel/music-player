@@ -11,7 +11,7 @@ const songs = [
     { title: "SOMRAS", artist: "YO YO HONEY SINGH", src: "media/attitude/SOMRAS.mp3", cover: "media/library.jpg" },
     { title: "Car Mein Music Baja", artist: "Neha Kakkar, Tony Kakkar", src: "media/attitude/Car Mein Music Baja.mp3", cover: "media/library.jpg" },
     { title: "Party Ho Rai Hai", artist: "Danish, Naaz Aulakh, Muskan Sharma", src: "media/attitude/Party Ho Rai Hai.mp3", cover: "media/library.jpg" },
-    { title: "Uyi Amma", artist: "Azaad, Aaman D, Rasha Thadani", src: "media/attitude/Uyi Amma.mp3", cover: "media/library.jpg" },
+    { title: "Uyi Amma", artist: "Azaad, Aaman D, Rasha Thadani", src: "https://drive.google.com/file/d/1rdk_5R8462o4tzFPcCGCyQk3xOPZNnGl/view?usp=drive_link", cover: "media/library.jpg" },
     //---Playlist Party time---------------
     { title: "Abhi Toh Party Shuru Hui Hai", artist: "Khoobsurat, Badshah, Aastha", src: "media/party/Abhi Toh Party Shuru Hui Hai.mp3", cover: "media/library.jpg" },
     { title: "Badshah", artist: "Akriti K, Varun, Alia", src: "media/party/Badshah.mp3", cover: "media/library.jpg" },
