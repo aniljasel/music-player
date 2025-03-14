@@ -36,6 +36,7 @@ const playlists = {
 
 let currentSongIndex = 0;
 const audioPlayer = document.getElementById("audio-player");
+audioPlayer.preload = "auto";
 const audioSource = document.getElementById("audio-source");
 const songTitle = document.querySelector(".song-info h3");
 const songArtist = document.querySelector(".song-info p");
