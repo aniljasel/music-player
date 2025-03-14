@@ -48,10 +48,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function updateSoundEffects() {
-        gainNode.gain.value = Math.min(maxxbassControl.value / 100, 2); // Increase gain value for MaxxBass
-        biquadFilter.frequency.value = Math.min(detailsControl.value * 20, 8000); // Increase frequency for Details
-        biquadFilter.gain.value = midnightControl.value * 4; // Increase gain for Midnight
-        biquadFilter.Q.value = Math.min(widthControl.value / 25, 5); // Increase Q factor for Width
+        gainNode.gain.value = Math.min(maxxbassControl.value / 100, 2);
+        biquadFilter.frequency.value = Math.min(detailsControl.value * 20, 8000);
+        biquadFilter.gain.value = midnightControl.value * 4;
+        biquadFilter.Q.value = Math.min(widthControl.value / 25, 5);
 
         equalizerBands.forEach((band, index) => {
             band.gain.value = Math.min(Math.max((equalizerControls[index].value - 50) / 10, -6), 6);
@@ -60,49 +60,41 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function toggleSoundEffects(enable) {
         if (enable) {
-            source.disconnect(audioContext.destination);
+            source.disconnect();
             source.connect(gainNode);
             gainNode.connect(biquadFilter);
-            equalizerBands.forEach((band, index) => {
-                if (index === 0) {
-                    biquadFilter.connect(band);
-                } else {
-                    equalizerBands[index - 1].connect(band);
-                }
-            });
+            equalizerBands[0].connect(biquadFilter);
+
+            for (let i = 0; i < equalizerBands.length - 1; i++) {
+                equalizerBands[i].connect(equalizerBands[i + 1]);
+            }
             equalizerBands[equalizerBands.length - 1].connect(audioContext.destination);
-            updateSoundEffects();
-            analyser.connect(audioContext.destination); // Connect analyser to destination
         } else {
-            gainNode.disconnect();
-            biquadFilter.disconnect();
-            equalizerBands.forEach(band => band.disconnect());
+            source.disconnect();
             source.connect(audioContext.destination);
-            analyser.connect(audioContext.destination); // Connect analyser to destination
         }
     }
 
+    let animationFrameId;
     function drawVisualizer() {
-        requestAnimationFrame(drawVisualizer);
+        animationFrameId = requestAnimationFrame(drawVisualizer);
         const dataArray = new Uint8Array(analyser.frequencyBinCount);
         analyser.getByteFrequencyData(dataArray);
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        const barWidth = (canvas.width / dataArray.length) * 10; // Increase bar width
+        const barWidth = (canvas.width / dataArray.length) * 10;
         let x = 0;
 
         for (let i = 0; i < dataArray.length; i++) {
             const barHeight = dataArray[i];
-            const r = barHeight + (25 * (i / dataArray.length));
-            const g = 10 * (i / dataArray.length);
-            const b = 150;
-
-            ctx.fillStyle = `rgb(${r},${g},${b})`;
+            ctx.fillStyle = `rgb(${barHeight + 25}, ${10 * (i / dataArray.length)}, 150)`;
             ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
-
             x += barWidth + 1;
         }
+    }
+
+    function stopVisualizer() {
+        cancelAnimationFrame(animationFrameId);
     }
 
     function startAudio() {
@@ -116,7 +108,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     window.addEventListener("click", startAudio, { once: true });
-    window.addEventListener("touchstart", startAudio, { once: true });
+    window.addEventListener("touchstart", startAudio, { passive: true, once: true });
+
+    // ✅ Fix: Browser tab switch ke baad audio suspend na ho
+    document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "visible" && audioContext.state === "suspended") {
+            audioContext.resume();
+        }
+    });
 
     audio.addEventListener("canplay", startAudio);
 
