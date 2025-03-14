@@ -49,8 +49,8 @@ Technologies Used:-
 3. JavaScript: Dynamic interaction and audio controls.
 4. Canvas API: Visualizer for audio playback.
 
-Installation:- 
-Click the install button and install the Music Player App.
+Installation:-
+1. Click the install button and install the Music Player App.
 
 Future Enhancements:-
 1. User Authentication: Login feature to sync user preferences.
@@ -59,7 +59,7 @@ Future Enhancements:-
 4. Offline Mode: Enable music downloads for offline listening.
 
 Purpose:-
-This app/website, created by Anil Kumar, is made for the purpose of learning web technology.
+1. This app/website, created by Anil Kumar, is made for the purpose of learning web technology.
 
 Contact:- 
 For feedback or contributions, feel free to reach out:
