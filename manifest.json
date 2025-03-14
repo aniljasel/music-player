@@ -1,12 +1,12 @@
 {
   "id": "/index.html",
   "name": "Music Player",
-  "short_name": "MP",
+  "short_name": "Anil Kumar",
   "description": "A PWA music player with offline support.",
   "start_url": "/index.html",
   "display": "standalone",
   "theme_color": "#ff4500",
-  "background_color": "#000000",
+  "background_color": "#fff",
   "icons": [
       {
           "src": "media/icon-192x192.png",
