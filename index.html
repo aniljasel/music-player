@@ -4,42 +4,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="media/pro.png" type="image/x-icon">
+    <link rel="icon" href="media/logo.png" type="image/x-icon">
     <title>Music Player</title>
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="font-style.css">
 </head>
 
 <body>
     <audio id="audio-player">
-        <source id="audio-source" src="media/MANIAC.mp3" type="audio/mpeg">
+        <source id="audio-source" src="" type="audio/mpeg">
     </audio>
 
     <header>
-        <img src="media/icon-192x192.png">
+        <img src="media/logo.png">
         <h1>Music Player</h1>
         <nav>
             <a href="#home">Home</a>
             <a href="#library">Library</a>
             <a href="#playlists">Playlists</a>
             <a href="#settings-popup" id="settings-button">Settings</a>
-            <!-- Settings Popup -->
-            <div id="settings-popup" class="popup">
-                <h2>Settings</h2>
-                <button href="#" id="toggle-theme">Dark Mode</button>
-                <button href="#" id="close-popup">Close</button>
-            </div>
         </nav>
-    </header>
-    <main>
-
-        <div class="search">
-            <input type="text" id="search-input" placeholder="Search for songs...">
-            <button id="search-btn">Search</button>
-            <div id="results"></div>
+        <div class="pro">
+        <img src="" id="pro">
         </div>
+    </header>
+    <!-- Settings Popup -->
+    <div id="settings-popup" class="popup">
+        <h2>Settings</h2>
+        <button href="#" id="toggle-theme">Dark Mode</button>
+        <!--Sound controls button--------->
+        <div class="sound-btn">
+            <p>Playback Control</p>
+            <div id="sound-btn">
+                <span></span>
+            </div>
+        </div>
+        <!-- Sound Effects Control Interface -->
+        <div class="sound-effects-control">
+            <div class="control-knob">
+                <label for="maxxbass">MaxxBass</label>
+                <input type="range" id="maxxbass" min="0" max="100" value="50">
+            </div>
+            <div class="control-knob">
+                <label for="details">Details</label>
+                <input type="range" id="details" min="0" max="100" value="50">
+            </div>
+            <div class="control-knob">
+                <label for="midnight">Midnight</label>
+                <input type="range" id="midnight" min="0" max="100" value="50">
+            </div>
+            <div class="control-knob">
+                <label for="width">Width</label>
+                <input type="range" id="width" min="0" max="100" value="50">
+            </div>
+            <div class="equalizer">
+                <div class="equalizer-slider">
+                    <label for="eq-31">31 Hz</label>
+                    <input type="range" id="eq-31" min="0" max="100" value="50">
+                </div>
+                <div class="equalizer-slider">
+                    <label for="eq-63">63 Hz</label>
+                    <input type="range" id="eq-63" min="0" max="100" value="50">
+                </div>
+                <div class="equalizer-slider">
+                    <label for="eq-125">125 Hz</label>
+                    <input type="range" id="eq-125" min="0" max="100" value="50">
+                </div>
+                <div class="equalizer-slider">
+                    <label for="eq-250">250 Hz</label>
+                    <input type="range" id="eq-250" min="0" max="100" value="50">
+                </div>
+                <div class="equalizer-slider">
+                    <label for="eq-500">500 Hz</label>
+                    <input type="range" id="eq-500" min="0" max="100" value="50">
+                </div>
+                <div class="equalizer-slider">
+                    <label for="eq-1k">1k Hz</label>
+                    <input type="range" id="eq-1k" min="0" max="100" value="50">
+                </div>
+                <div class="equalizer-slider">
+                    <label for="eq-2k">2k Hz</label>
+                    <input type="range" id="eq-2k" min="0" max="100" value="50">
+                </div>
+                <div class="equalizer-slider">
+                    <label for="eq-4k">4k Hz</label>
+                    <input type="range" id="eq-4k" min="0" max="100" value="50">
+                </div>
+                <div class="equalizer-slider">
+                    <label for="eq-8k">8k Hz</label>
+                    <input type="range" id="eq-8k" min="0" max="100" value="50">
+                </div>
+                <div class="equalizer-slider">
+                    <label for="eq-16k">16k Hz</label>
+                    <input type="range" id="eq-16k" min="0" max="100" value="50">
+                </div>
+            </div>
+        </div>
+        <button href="#" id="close-popup">Close</button>
+    </div>
+    <!--Footer icons Home, library, playlist, settins -->
+    <div class="mobile-footer">
+        <div class="footer-item">
+            <a href="#home" class="fa fa-home"></a>
+            <p>Home</p>
+        </div>
+        <div class="footer-item">
+            <a href="#library" class="fa fa-music"></a>
+            <p>Library</p>
+        </div>
+        <div class="footer-item">
+            <a href="#playlists" class="fa fa-list"></a>
+            <p>Playlist</p>
+        </div>
+        <div class="footer-item">
+            <a href="#settings-popup" id="footer-set-btn" class="fa fa-cog"></a>
+            <p>Settings</p>
+        </div>
+    </div>
 
+    <main>
         <section class="now-playing" id="home">
             <div class="volume-control">
                 <h2>Now Playing</h2>
@@ -49,10 +133,10 @@
                 <div class="song-info">
                     <img src="media/profile.jpeg" alt="Album Art">
                 </div>
-                    <canvas id="visualizer"></canvas>
+                <canvas id="visualizer"></canvas>
                 <div class="song-info">
-                    <h3>Music Player</h3>
-                    <p>Anil Kumar</p>
+                    <h3>Anil Kumar</h3>
+                    <p>Music Player</p>
                     <div class="controls">
                         <button>&#9664;&#9664;</button>
                         <button>&#9654;</button>
@@ -66,25 +150,6 @@
                 <span id="total-duration">0:00</span>
             </div>
         </section>
-        <!--Footer icons Home, library, playlist, settins -->
-        <div class="mobile-footer">
-            <div class="footer-item">
-                <a href="#home" class="fas fa-home"></a>
-                <p>Home</p>
-            </div>
-            <div class="footer-item">
-                <a href="#library" class="fas fa-music"></a>
-                <p>Library</p>
-            </div>
-            <div class="footer-item">
-                <a href="#playlists" class="fas fa-list"></a>
-                <p>Playlist</p>
-            </div>
-            <div class="footer-item">
-                <a href="#settings-popup" id="settings-button" class="fas fa-cog"></a>
-                <p>Settings</p>
-            </div>
-        </div>
 
         <section class="stats-dashboard" id="stats">
             <div class="stats-container">
@@ -102,7 +167,7 @@
                 </div>
                 <div class="stat-card">
                     <h3>Recently Played</h3>
-                    <ul id="recently-played"></ul>
+                    <p id="recently-played"></p>
                 </div>
             </div>
         </section>
@@ -114,7 +179,7 @@
                     <img src="media/library.jpg" alt="Album Art">
                     <div class="card-content">
                         <h3>MANIAC</h3>
-                        <p>｜YO YO HONEY SINGH ｜ ESHA GUPTA ｜ GLORY ｜ BHUSHAN KUMAR｜</p>
+                        <p>YO YO HONEY SINGH, ESHA GUPTA, GLORY, BHUSHAN KUMAR</p>
                     </div>
                 </div>
                 <div class="song-card" onclick="playSong('Nazra_Ke_Teer')">
@@ -128,42 +193,42 @@
                     <img src="media/library.jpg" alt="Album Art">
                     <div class="card-content">
                         <h3>Ek-Pardesi-Mera-Dil-2.0</h3>
-                        <p>｜ Emiway Bantai ｜ Yo Yo Honey Singh ｜</p>
+                        <p>Emiway Bantai, Yo Yo Honey Singh</p>
                     </div>
                 </div>
                 <div class="song-card" onclick="playSong('She Move It Like')">
                     <img src="media/library.jpg" alt="Album Art">
                     <div class="card-content">
                         <h3>She Move It Like</h3>
-                        <p>｜ Badshah ｜ Warina Hussain ｜</p>
+                        <p>Badshah, Warina Hussain</p>
                     </div>
                 </div>
                 <div class="song-card" onclick="playSong('Koka')">
                     <img src="media/library.jpg" alt="Album Art">
                     <div class="card-content">
                         <h3>Koka</h3>
-                        <p>｜ Khandaani Shafakhana ｜</p>
+                        <p>Khandaani Shafakhana</p>
                     </div>
                 </div>
                 <div class="song-card">
                     <img src="media/library.jpg" alt="Album Art">
                     <div class="card-content">
-                        <h3>Song Title 6</h3>
-                        <p>Artist Name 6</p>
+                        <h3>Jisne daaru nahi pi</h3>
+                        <p>RAHUL VAIDYA, DANISH SABRI, RAHUL SHETTY6</p>
                     </div>
                 </div>
                 <div class="song-card" onclick="playSong('Song Title 1')">
                     <img src="media/library.jpg" alt="Album Art">
                     <div class="card-content">
-                        <h3>Song Title 7</h3>
-                        <p>Artist Name 7</p>
+                        <h3>Party Mashup 2025</h3>
+                        <p>Dj Shiv Chauhan</p>
                     </div>
                 </div>
                 <div class="song-card">
                     <img src="media/library.jpg" alt="Album Art">
                     <div class="card-content">
-                        <h3>Song Title 8</h3>
-                        <p>Artist Name 8</p>
+                        <h3>Dhanda Nyoliwala</h3>
+                        <p>Deepesh Goyal, VYRL Haryanvi</p>
                     </div>
                 </div>
             </div>
@@ -173,32 +238,168 @@
         <section class="playlists-section" id="playlists">
             <h2>Playlists</h2>
             <div class="playlist-grid">
-                <div class="playlist-card">
+                <div class="playlist-card" onclick="togglePlaylist('playlist1')">
                     <img src="media/playlist.jpg" alt="Playlist Cover">
                     <div class="playlist-card-content">
-                        <h3>Playlist 1</h3>
-                        <p>Description of Playlist 1</p>
+                        <h3>Cool Songs</h3>
+                        <p>Best Attitude/cool songs, yo yo honey Singh, Badshah/p>
                     </div>
                 </div>
-                <div class="playlist-card">
+                <div class="playlist-card" onclick="togglePlaylist('playlist2')">
                     <img src="media/playlist.jpg" alt="Playlist Cover">
                     <div class="playlist-card-content">
-                        <h3>Playlist 1</h3>
-                        <p>Description of Playlist 1</p>
+                        <h3>Party Songs</h3>
+                        <p>Let's Party Time, Top Party songs 2025</p>
                     </div>
                 </div>
-                <div class="playlist-card">
+                <div class="playlist-card" onclick="togglePlaylist('playlist3')">
                     <img src="media/playlist.jpg" alt="Playlist Cover">
                     <div class="playlist-card-content">
-                        <h3>Playlist 1</h3>
-                        <p>Description of Playlist 1</p>
+                        <h3>sad songs</h3>
+                        <p>Top Tranding sad (mood) songs 2025</p>
                     </div>
                 </div>
-                <div class="playlist-card">
+                <div class="playlist-card" onclick="togglePlaylist('playlist4')">
                     <img src="media/playlist.jpg" alt="Playlist Cover">
                     <div class="playlist-card-content">
-                        <h3>Playlist 1</h3>
-                        <p>Description of Playlist 1</p>
+                        <h3>Hariyanvi Songs</h3>
+                        <p>Top Tranding Hariyanvi songs 2025</p>
+                    </div>
+                </div>
+            </div>
+            <!--Playlist1 song-------------->
+            <div id="playlist1-songs" class="playlist-songs" style="display: none;">
+                <h3>Cool Songs</h3>
+                <div class="library">
+                    <div class="song-card" onclick="playSong('SOMRAS')">
+                        <img src="media/playlist.jpg" alt="Album Art">
+                        <div class="card-content">
+                            <h3>SOMRAS</h3>
+                            <p>YO YO HONEY SINGH</p>
+                        </div>
+                    </div>
+                    <div class="song-card" onclick="playSong('Car Mein Music Baja')">
+                        <img src="media/playlist.jpg" alt="Album Art">
+                        <div class="card-content">
+                            <h3>Car Mein Music Baja</h3>
+                            <p>Neha Kakkar, Tony Kakkar</p>
+                        </div>
+                    </div>
+                    <div class="song-card" onclick="playSong('Party Ho Rai Hai')">
+                        <img src="media/playlist.jpg" alt="Album Art">
+                        <div class="card-content">
+                            <h3>Party Ho Rai Hai</h3>
+                            <p>Danish, Naaz Aulakh, Muskan Sharma</p>
+                        </div>
+                    </div>
+                    <div class="song-card" onclick="playSong('Uyi Amma')">
+                        <img src="media/playlist.jpg" alt="Album Art">
+                        <div class="card-content">
+                            <h3>Uyi Amma</h3>
+                            <p>Azaad, Aaman D, Rasha Thadani</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-------Playlist 2 songs -->
+            <div id="playlist2-songs" class="playlist-songs" style="display: none;">
+                <h3>Party Songs</h3>
+                <div class="library">
+                    <div class="song-card" onclick="playSong('Abhi Toh Party Shuru Hui Hai')">
+                        <img src="media/playlist.jpg" alt="Album Art">
+                        <div class="card-content">
+                            <h3>Abhi Toh Party Shuru Hui Hai</h3>
+                            <p>Khoobsurat, Badshah, Aastha</p>
+                        </div>
+                    </div>
+                    <div class="song-card" onclick="playSong('Badshah')">
+                        <img src="media/playlist.jpg" alt="Album Art">
+                        <div class="card-content">
+                            <h3>Badshah</h3>
+                            <p>Akriti K, Varun, Alia</p>
+                        </div>
+                    </div>
+                    <div class="song-card" onclick="playSong('Hookah Bar')">
+                        <img src="media/playlist.jpg" alt="Album Art">
+                        <div class="card-content">
+                            <h3>Hookah Bar</h3>
+                            <p>Akshay Kumar, Himesh Reshammiya</p>
+                        </div>
+                    </div>
+                    <div class="song-card" onclick="playSong('Sajna Ve Sajna')">
+                        <img src="media/playlist.jpg" alt="Album Art">
+                        <div class="card-content">
+                            <h3>Sajna Ve Sajna</h3>
+                            <p>Rajkummar, Shehnaaz, Sunidhi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-------Playlist 3 songs -->
+            <div id="playlist3-songs" class="playlist-songs" style="display: none;">
+                <h3>Sad Songs</h3>
+                <div class="library">
+                    <div class="song-card" onclick="playSong('AANKH_HAI_BHARI_BHARI_2.0')">
+                        <img src="media/playlist.jpg" alt="Album Art">
+                        <div class="card-content">
+                            <h3>AANKH_HAI_BHARI_BHARI_2.0</h3>
+                            <p>Rahul Vaidya, Rashami Desai</p>
+                        </div>
+                    </div>
+                    <div class="song-card" onclick="playSong('Dil Chahte Ho')">
+                        <img src="media/playlist.jpg" alt="Album Art">
+                        <div class="card-content">
+                            <h3>Dil Chahte Ho</h3>
+                            <p>Jubin Nautiyal, Mandy Takhar</p>
+                        </div>
+                    </div>
+                    <div class="song-card" onclick="playSong('Kya Vo Mujhse Jyada')">
+                        <img src="media/playlist.jpg" alt="Album Art">
+                        <div class="card-content">
+                            <h3>Kya Vo Mujhse Jyada Pyar Karta Hai</h3>
+                            <p>Arrjun Pande, Bheem Pandey</p>
+                        </div>
+                    </div>
+                    <div class="song-card" onclick="playSong('Meri Tarah')">
+                        <img src="media/playlist.jpg" alt="Album Art">
+                        <div class="card-content">
+                            <h3>Meri Tarah</h3>
+                            <p>Jubin N, Payal D</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-------Playlist 4 songs -->
+            <div id="playlist4-songs" class="playlist-songs" style="display: none;">
+                <h3>Hariyanvi Songs</h3>
+                <div class="library">
+                    <div class="song-card" onclick="playSong('Blender')">
+                        <img src="media/playlist.jpg" alt="Album Art">
+                        <div class="card-content">
+                            <h3>Blender</h3>
+                            <p>Masoom Sharma, Dev Chouhan, Pooja Saxena</p>
+                        </div>
+                    </div>
+                    <div class="song-card" onclick="playSong('Maregi Maregi')">
+                        <img src="media/playlist.jpg" alt="Album Art">
+                        <div class="card-content">
+                            <h3>Maregi Maregi</h3>
+                            <p>Raj Mawar, Renuka Panwar, Khushi Baliyan</p>
+                        </div>
+                    </div>
+                    <div class="song-card" onclick="playSong('TICH BUTTON')">
+                        <img src="media/playlist.jpg" alt="Album Art">
+                        <div class="card-content">
+                            <h3>TICH BUTTON</h3>
+                            <p>Rasool Sidhu, Jasmeen Akhtar</p>
+                        </div>
+                    </div>
+                    <div class="song-card" onclick="playSong('YANTA')">
+                        <img src="media/playlist.jpg" alt="Album Art">
+                        <div class="card-content">
+                            <h3>YANTA</h3>
+                            <p>RENUKA PANWAR&RAJA, SAHIL SANDHU</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -207,26 +408,20 @@
     <footer class="footer-container" id="contact">
         <div class="footer-bottom">
             <div class="social-icons" role="navigation" aria-label="Social media links">
-                <a href="#" target="_blank" class="social-icon" aria-label="Facebook"><i
-                        class="fab fa-facebook-f"></i></a>
-                <a href="#" target="_blank" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                <a href="#" target="_blank" class="social-icon" aria-label="Instagram"><i
-                        class="fab fa-instagram"></i></a>
-                <a href="#" target="_blank" class="social-icon" aria-label="LinkedIn"><i
-                        class="fab fa-linkedin-in"></i></a>
-                <a href="#" target="_blank" class="social-icon" aria-label="Pinterest"><i
-                        class="fab fa-pinterest"></i></a>
-                <a href="#" target="_blank" class="social-icon" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-            </div>
-            <button onclick="topFunction()" class="back-to-top" aria-label="Back to top">↑</button>
-            <div class="copyright">
-                <p>&copy; 2025 Music Player. All rights reserved.</p>
+                <a href="#" target="_blank" class="social-icon" aria-label="Facebook"><i class="fa fa-facebook-f"></i></a>
+                <a href="#" target="_blank" class="social-icon" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+                <a href="#" target="_blank" class="social-icon" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+                <a href="#" target="_blank" class="social-icon" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a>
+                <a href="#" target="_blank" class="social-icon" aria-label="Pinterest"><i class="fa fa-pinterest"></i></a>
             </div>
         </div>
-
+        <button onclick="topFunction()" class="back-to-top" aria-label="Back to top">↑</button>
     </footer>
+    <div class="copyright">
+        <p>&copy; 2025 Music Player. All rights reserved.</p>
+    </div>
     <script>
-        // js for got to top button ------------------------------
+        // top button ------------------------------
         window.onscroll = function () { scrollFunction() };
 
         function scrollFunction() {
@@ -253,7 +448,7 @@
         // Register Service Worker
         document.addEventListener('DOMContentLoaded', () => {
             if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/service-worker.js')
+                navigator.serviceWorker.register('/js/service-worker.js')
                     .then(reg => console.log('Service Worker Registered!', reg))
                     .catch(err => console.log('Service Worker Failed:', err));
             }
@@ -262,10 +457,11 @@
 
     <script src="js/script.js"></script>
     <script src="js/popup.js"></script>
+    <script src="js/footer-popup.js"></script>
     <script src="js/service-worker.js"></script>
     <script src="js/app.js"></script>
     <script src="js/music_bar_visualizer.js"></script>
-    
+
     <script>
         if (window.jQuery) {
             delete window.jQuery;
