@@ -1,7 +1,7 @@
 {
   "id": "/index.html",
   "name": "Music Player",
-  "short_name": "Anil Kumar",
+  "short_name": "Music Player",
   "description": "A PWA music player with a clean UI.",
   "start_url": "https://aniljasel.github.io/music-player/index.html",
   "display": "standalone",
