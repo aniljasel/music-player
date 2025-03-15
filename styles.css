@@ -9,15 +9,46 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #121826;
-    color: white;
+    background-color: white;
+    color: black;
 }
 
 /* Only for mobile screens */
-@media (max-width: 768px) {     
+@media (max-width: 768px) {
     body {
-        padding-bottom: 70px; 
+        padding-bottom: 70px;
     }
+}
+
+/* --------App info page------*/
+.splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1s ease-out;
+}
+
+.splash-screen img {
+    width: 100px;
+    margin-bottom: 20px;
+}
+
+.splash-screen h1 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.splash-screen p {
+    font-size: 16px;
+    color: #555;
+    margin-top: 50px;
 }
 
 /* Header Styles */
@@ -40,7 +71,7 @@ header img {
 header h1 {
     margin: 0;
     font-size: 25px;
-    
+
 }
 
 nav {
@@ -67,6 +98,7 @@ nav a:hover {
 header .pro {
     margin-top: 5px;
 }
+
 header .pro img {
     display: none;
     width: 35px;
@@ -74,22 +106,26 @@ header .pro img {
 }
 
 @media (max-width: 768px) {
-    header{
+    header {
         padding-bottom: 12px;
         padding-top: 18px;
     }
+
     header h1 {
         margin-bottom: 10px;
         margin-right: 0;
         margin-left: 5px;
     }
+
     header img {
         margin-top: -10px;
-        color: #000; 
+        color: #000;
     }
+
     nav {
         display: none;
     }
+
     header .pro img {
         display: flex;
     }
@@ -112,8 +148,8 @@ header .pro img {
 }
 
 .light-mode {
-    background: white;
-    color: #000;
+    background: #121826;
+    color: white;
 }
 
 .popup button {
@@ -145,7 +181,7 @@ header .pro img {
     font-size: 1rem;
 }
 
-#sound-btn{
+#sound-btn {
     position: absolute;
     top: 136px;
     right: 50px;
@@ -158,7 +194,7 @@ header .pro img {
     transition: padding-left 0.5s, background 0.5s;
 }
 
-#sound-btn span{
+#sound-btn span {
     width: 15px;
     height: 15px;
     background: #fff;
@@ -166,7 +202,7 @@ header .pro img {
     display: inline-block;
 }
 
-#sound-btn.sound-btn-on{
+#sound-btn.sound-btn-on {
     padding-left: 23px;
     background: #2c2c2c;
 }
@@ -176,29 +212,37 @@ header .pro img {
 .sound-effects-control {
     margin-top: 20px;
 }
+
 .control-knob {
     display: inline-block;
     margin: 10px;
 }
+
 .control-knob label {
     display: block;
     text-align: center;
 }
+
 .equalizer {
     display: flex;
     justify-content: space-around;
     margin-top: 20px;
     margin-bottom: 25px;
 }
+
 .equalizer-slider {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 .equalizer-slider input {
-    writing-mode: bt-lr; /* IE */
-    appearance: slider-vertical; /* Standard */
-    -webkit-appearance: slider-vertical; /* WebKit */
+    writing-mode: bt-lr;
+    /* IE */
+    appearance: slider-vertical;
+    /* Standard */
+    -webkit-appearance: slider-vertical;
+    /* WebKit */
     width: 8px;
     height: 100px;
 }
@@ -210,26 +254,28 @@ header .pro img {
         margin-top: 10%;
         left: 180px;
     }
+
     .control-knob {
         display: inline-block;
         margin: 8px;
     }
+
     .equalizer-slider {
         display: flex;
         flex-direction: column;
         text-align: center;
         align-items: center;
     }
-    
+
 }
 
 /* --------------Volume Control--------------*/
-.volume-control {  
+.volume-control {
     display: flex;
-    align-items: center; 
+    align-items: center;
 }
 
-.volume-control img{
+.volume-control img {
     height: 25px;
     font-size: 20px;
     margin-left: auto;
@@ -239,15 +285,89 @@ header .pro img {
 #volume-slider {
     width: 120px;
     cursor: pointer;
-    accent-color: blue; 
+    accent-color: blue;
 }
 
 @media (max-width: 768px) {
     .volume-control img {
         margin-left: 20px;
     }
-    .stats-dashboard{
+
+    .stats-dashboard {
         display: none;
+    }
+}
+
+/* ------------- Hearder Image slide show------*/
+
+.slideshow-container {
+    position: relative;
+    display: none;
+    width: auto;
+    margin-top: 80px;
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 400px;
+    overflow: hidden;
+    border: 5px solid #000;
+    border-radius: 18px;
+}
+
+.slides {
+    display: flex;
+    width: 600%;
+    /* Number of slides * 100% */
+    animation: slide 50s infinite;
+}
+
+.slide {
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 5px solid #fff;
+    border-radius: 18px;
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(0%);
+    }
+
+    16% {
+        transform: translateX(-100%);
+    }
+
+    32% {
+        transform: translateX(-200%);
+    }
+
+    48% {
+        transform: translateX(-300%);
+    }
+
+    64% {
+        transform: translateX(-400%);
+    }
+
+    80% {
+        transform: translateX(-500%);
+    }
+
+    100% {
+        transform: translateX(-500%);
+    }
+
+}
+
+@media (max-width: 768px) {
+    .slideshow-container {
+        display: flex;
+        height: auto;
     }
 }
 
@@ -255,8 +375,8 @@ header .pro img {
 .now-playing {
     display: grid;
     position: relative;
-    margin: 20px;
     padding-top: 50px;
+    margin: 20px;
 }
 
 .player {
@@ -267,9 +387,10 @@ header .pro img {
     background-color: #1e293b;
     padding: 15px;
     border-radius: 8px;
-    overflow: hidden; 
+    overflow: hidden;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4);
-    transition: transform 0.3s ease, background 0.3s ease;;
+    transition: transform 0.3s ease, background 0.3s ease;
+    ;
 }
 
 .song-info {
@@ -277,7 +398,8 @@ header .pro img {
     align-items: center;
     gap: 10px;
     position: relative;
-    z-index: 1; /* Keep text above visualizer */
+    z-index: 1;
+    /* Keep text above visualizer */
     overflow: hidden;
 }
 
@@ -321,9 +443,12 @@ header .pro img {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 100px; /* Adjust as per design */
-    z-index: 0; /* Keep it behind controls */
-    pointer-events: none; /* Prevent interactions */
+    height: 100px;
+    /* Adjust as per design */
+    z-index: 0;
+    /* Keep it behind controls */
+    pointer-events: none;
+    /* Prevent interactions */
 }
 
 /* --------------Music Control--------------*/
@@ -357,6 +482,11 @@ header .pro img {
 
 /* --------Responsive Design------------ */
 @media screen and (max-width: 768px) {
+    .now-playing {
+        padding-top: 0px;
+        margin-top: 5px;
+    }
+
     .player {
         display: flex;
         position: fixed;
@@ -369,15 +499,18 @@ header .pro img {
         background-color: #ffffff;
         z-index: 1;
     }
+
     .song-info {
         gap: 0px;
     }
+
     .song-info img {
         width: 50px;
         height: 50px;
         border-radius: 5px;
     }
-    .song-info h3{
+
+    .song-info h3 {
         position: relative;
         margin-left: 10px;
         color: #000;
@@ -385,9 +518,11 @@ header .pro img {
         width: 120px;
         overflow: hidden;
     }
+
     .song-info p {
         display: none;
     }
+
     .controls button {
         position: relative;
         margin-left: 0;
@@ -406,12 +541,15 @@ header .pro img {
         background-color: #fff;
         height: 30px;
     }
+
     .seek-bar-container span {
         color: #000;
     }
+
     #seek-bar {
         color: #000;
     }
+
     #seek-bar::-webkit-slider-thumb {
         background: #0033ff;
     }
@@ -419,9 +557,11 @@ header .pro img {
     #visualizer {
         height: 25px;
     }
+
     .library-section {
-        margin-top: -50px;
+        margin-top: -60px;
     }
+
     .footer-container {
         padding-bottom: 100px;
     }
@@ -491,7 +631,7 @@ header .pro img {
 
 .song-card img {
     width: 100%;
-    height: 150px; 
+    height: 150px;
     object-fit: cover;
 }
 
@@ -509,6 +649,7 @@ header .pro img {
     color: #94a3b8;
     text-transform: uppercase;
 }
+
 .song-card:hover {
     background-color: #334155;
     transition: 0.3s;
@@ -539,7 +680,7 @@ header .pro img {
 
 .playlist-card img {
     width: 100%;
-    height: 150px; 
+    height: 150px;
     object-fit: cover;
 }
 
@@ -556,6 +697,7 @@ header .pro img {
     font-size: 14px;
     color: #94a3b8;
 }
+
 .playlist-card:hover {
     background-color: #334155;
     transition: 0.3s;
@@ -595,6 +737,7 @@ header .pro img {
 .social-icon {
     color: #fff;
 }
+
 .social-icon:hover {
     color: #0033ff;
 }
@@ -632,10 +775,12 @@ header .pro img {
         margin-bottom: 0px;
         padding: 0 0px;
     }
+
     .copyright {
         padding-bottom: 100px;
     }
 }
+
 /*-----Footer icons Home, library, playlist, settins -----*/
 .mobile-footer {
     position: fixed;
@@ -646,20 +791,20 @@ header .pro img {
     background: #fff;
     justify-content: space-around;
     align-items: center;
-    padding: 12px 0;
+    padding: 10px 0;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
     z-index: 2;
 }
 
 .footer-item {
     text-align: center;
-    color: #0033ff;
+    color: #000;
     font-size: 14px;
 }
 
 .footer-item a {
     text-decoration: none;
-    color: #0033ff;
+    color: #000;
     font-size: 25px;
     margin-bottom: 0px;
 }
