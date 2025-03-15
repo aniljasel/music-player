@@ -1,8 +1,8 @@
 {
   "id": "/index.html",
-  "name": "Music Player",
+  "name": "Music Player <br> Powred by <br> Anil Kumar",
   "short_name": "Anil Kumar",
-  "description": "A PWA music player with offline support.",
+  "description": "A PWA music player.",
   "start_url": "https://aniljasel.github.io/music-player/index.html",
   "display": "standalone",
   "theme_color": "#ff4500",
